@@ -8,7 +8,7 @@
 > 3. **[REPORT.md](./REPORT.md)** — full methodology, evidence, limitations (~8 min read).
 > 4. **`make all`** from a fresh clone — pytest 46/46 + analyze + audit + dashboard.
 >
-> **Reach me:** [gorbuk.maxim@gmail.com](mailto:gorbuk.maxim@gmail.com) · +1 (208) 553-3054 · [linkedin.com/in/gorbuk](https://linkedin.com/in/gorbuk) · [github.com/mkzung](https://github.com/mkzung)
+> **Reach me:** [gorbuk@stanford.edu](mailto:gorbuk@stanford.edu) · +1 (208) 553-3054 · [linkedin.com/in/gorbuk](https://linkedin.com/in/gorbuk) · [github.com/mkzung](https://github.com/mkzung)
 >
 > Six-detector forensic framework over the ETH/BTC dataset (845 trades, 188 orderbook snapshots, 2025-09-01 → 2025-09-03 UTC).
 
@@ -110,6 +110,6 @@ Patterns tested and **rejected** as non-findings (the framework doesn't cherry-p
 
 ## Author
 
-**Maksim Gorbuk** · [gorbuk.maxim@gmail.com](mailto:gorbuk.maxim@gmail.com) · [github.com/mkzung](https://github.com/mkzung)
+**Max Gorbuk** · [gorbuk@stanford.edu](mailto:gorbuk@stanford.edu) · [github.com/mkzung](https://github.com/mkzung)
 
 Researcher at the Stanford GSB Venture Capital Initiative under Prof. Ilya Strebulaev. Incoming MSc, INTENT — Bocconi University, Milan.
