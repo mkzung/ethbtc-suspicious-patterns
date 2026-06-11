@@ -98,7 +98,7 @@ def detect_size_signatures(
             "size": flagged_idx,
             "count": observed_counts.loc[flagged_idx].values,
             "share_pct": observed_counts.loc[flagged_idx].values / len(sub) * 100,
-        }).sort_values("count", ascending=False).reset_index(drop=True)
+        }).sort_values(["count", "size"], ascending=[False, True]).reset_index(drop=True)  # size tie-break → deterministic across pandas versions
         out[label] = {
             "n": int(len(sub)),
             "threshold": threshold,
