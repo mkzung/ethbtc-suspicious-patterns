@@ -367,15 +367,14 @@ Six-detector forensic framework — five primary detectors (D1–D5) plus a peer
 
 <section id="repro" class="detector">
   <h2><span class="num">Repro</span> Reproducibility</h2>
-  <pre>git clone &lt;fork-url&gt;
-cd &lt;fork&gt;/mkzung-ethbtc-analysis
+  <pre>git clone https://github.com/mkzung/ethbtc-suspicious-patterns
+cd ethbtc-suspicious-patterns
 make all          # install + pytest + analyze + audit + open this dashboard
 
 # Or step-by-step
 pip install -r requirements.txt
 python -m pytest tests/ -v        # 46 unit tests
-python analyze.py --trades ../eth-btc-trades.csv \
-                  --orderbooks ../eth-btc-orderbooks.csv
+python analyze.py                 # data/ CSVs auto-detected
 python audit.py
 python calibration.py             # detectors-on-clean-data calibration</pre>
   <p>

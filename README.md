@@ -1,6 +1,6 @@
 # ETH/BTC Suspicious Pattern Analysis
 
-> 👋 **Hi — I'm Max Gorbuk**, applying for the **Inca Digital R&D Data Engineering Intern** role (Summer 2026). This repo is my submission to **DN Institute [Market Data Challenge — Issue #492](https://github.com/1712n/dn-institute/issues/492)**. The submission also lives upstream as **[PR 1712n/market-data-challenge#24](https://github.com/1712n/market-data-challenge/pull/24)**; this standalone repo is the canonical, browseable mirror.
+> 👋 **Hi — I'm Max Gorbuk**, applying for the **Inca Digital Investigations Analyst** role (Europe). This repo is a worked example of what the role does day-to-day: investigating market anomalies — wash trading, price manipulation, automated operators — and turning raw market data into a defensible, reproducible intelligence report. It began as my submission to **DN Institute [Market Data Challenge — Issue #492](https://github.com/1712n/dn-institute/issues/492)** (upstream: **[PR 1712n/market-data-challenge#24](https://github.com/1712n/market-data-challenge/pull/24)**); this standalone repo is the canonical, browseable mirror.
 >
 > **Where to look first (≈ 5 min):**
 > 1. 🚀 **[Live dashboard](https://mkzung.github.io/ethbtc-suspicious-patterns/dashboard.html)** — click to open in your browser (GitHub Pages, no clone needed).
@@ -16,7 +16,7 @@
 ![pytest](https://img.shields.io/badge/pytest-46%2F46_pass-3fb950)
 ![calibration](https://img.shields.io/badge/calibration-clean--baseline_passes-3fb950)
 ![reproducible](https://img.shields.io/badge/reproducibility-byte--identical-3fb950)
-![CI](https://img.shields.io/badge/CI-github_actions-2088ff?logo=githubactions&logoColor=white)
+[![CI](https://github.com/mkzung/ethbtc-suspicious-patterns/actions/workflows/test.yml/badge.svg)](https://github.com/mkzung/ethbtc-suspicious-patterns/actions/workflows/test.yml)
 
 ---
 
@@ -52,8 +52,7 @@ Or step-by-step:
 ```bash
 pip install -r requirements.txt
 python -m pytest tests/ -v       # 46 unit tests
-python analyze.py --trades ../eth-btc-trades.csv \
-                  --orderbooks ../eth-btc-orderbooks.csv
+python analyze.py                # data/ CSVs auto-detected (or pass --trades/--orderbooks)
 python audit.py                  # raw-evidence dump for every claim
 python calibration.py            # detectors on synthetic clean baseline
 ```
@@ -101,7 +100,7 @@ Patterns tested and **rejected** as non-findings (the framework doesn't cherry-p
 
 | Validation | Command | What it checks |
 |---|---|---|
-| Byte-identical reproducibility | `make test` | re-running `analyze.py` produces identical `findings.json` (seeded RNGs) |
+| Byte-identical reproducibility | `make test` | re-running `analyze.py` produces identical `findings.json` (seeded RNGs; floats serialized at 10 dp so the diff holds across platforms/BLAS builds, not just same-machine) |
 | Unit tests | `make pytest` | 46-test pytest suite: loaders, all 6 detectors, edge cases, end-to-end repro |
 | Calibration study | `make calibrate` | detectors on synthetic clean ETH/BTC data → zero false positives |
 | Continuous integration | `.github/workflows/test.yml` | full pipeline on Python 3.10 / 3.11 / 3.12 on every push |
@@ -112,4 +111,4 @@ Patterns tested and **rejected** as non-findings (the framework doesn't cherry-p
 
 **Max Gorbuk** · [gorbuk@stanford.edu](mailto:gorbuk@stanford.edu) · [github.com/mkzung](https://github.com/mkzung)
 
-Researcher at the Stanford GSB Venture Capital Initiative under Prof. Ilya Strebulaev. Incoming MSc, INTENT — Bocconi University, Milan.
+Researcher at the Stanford GSB Venture Capital Initiative under Prof. Ilya Strebulaev. Incoming MAM, London Business School (Aug 2026).
