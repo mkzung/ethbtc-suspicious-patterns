@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -58,6 +59,30 @@ def _to_jsonable(o):
         return o.tolist()
     raise TypeError(f"Unserializable type: {type(o)}")
 
+
+def _round_floats(o, ndigits: int = 10):
+    """Recursively round all floats to `ndigits` decimal places.
+
+    Full-precision float serialization leaks platform noise: the last 1-2
+    bits of accumulated pandas/numpy arithmetic differ across BLAS builds
+    and architectures (x86 vs ARM), so a findings.json committed on one
+    machine fails a byte-diff against one generated on another. 10 dp is
+    ~4 orders of magnitude below any digit we interpret, and makes the
+    byte-identical reproducibility claim hold cross-platform.
+    """
+    if isinstance(o, bool):          # bool is an int subclass — keep as-is
+        return o
+    if isinstance(o, (float, np.floating)):
+        return None if (isinstance(o, float) and math.isnan(o)) or \
+                       (isinstance(o, np.floating) and np.isnan(o)) \
+               else round(float(o), ndigits)
+    if isinstance(o, dict):
+        return {k: _round_floats(v, ndigits) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [_round_floats(v, ndigits) for v in o]
+    if isinstance(o, np.ndarray):
+        return [_round_floats(v, ndigits) for v in o.tolist()]
+    return o
 
 
 def _smart_default(name: str) -> Path:
@@ -214,7 +239,7 @@ def main() -> None:
         "d6": d6_sum,
     }
     with open(args.findings, "w") as f:
-        json.dump(findings, f, indent=2, default=_to_jsonable)
+        json.dump(_round_floats(findings), f, indent=2, default=_to_jsonable)
     print(f"\n[done] figures → {args.out}/  ·  findings → {args.findings}")
 
 

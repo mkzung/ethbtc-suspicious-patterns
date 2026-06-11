@@ -21,10 +21,10 @@
     "n_flagged_size": 0,
     "n_flagged_any": 3,
     "n_event_clusters": 3,
-    "max_z_count": 3.6375060104665318,
-    "max_z_size": 2.7900540699973235,
-    "global_buy_count_share": 0.8518957345971564,
-    "global_buy_size_share": 0.9999942909880631
+    "max_z_count": 3.6375060105,
+    "max_z_size": 2.79005407,
+    "global_buy_count_share": 0.8518957346,
+    "global_buy_size_share": 0.999994291
   },
   "d2": {
     "buy": {
@@ -34,7 +34,7 @@
       "max_count": 6,
       "top_size": 0.00026058,
       "top_count": 6,
-      "top_share_pct": 0.8333333333333334
+      "top_share_pct": 0.8333333333
     },
     "sell": {
       "n_trades": 125,
@@ -43,7 +43,7 @@
       "max_count": 7,
       "top_size": 0.00026058,
       "top_count": 7,
-      "top_share_pct": 5.6000000000000005
+      "top_share_pct": 5.6
     }
   },
   "d3": {
@@ -51,19 +51,19 @@
   },
   "d4": {
     "n_snapshots": 188,
-    "median_spread_bps": 89.7129148626612,
-    "p25_spread_bps": 54.50224567695519,
-    "p75_spread_bps": 131.67183771126994,
-    "p95_spread_bps": 141.16914833945498,
-    "max_spread_bps": 145.5797648183457,
-    "min_spread_bps": 1.8310343963389315,
-    "threshold_bps": 205.4673029141333,
+    "median_spread_bps": 89.7129148627,
+    "p25_spread_bps": 54.502245677,
+    "p75_spread_bps": 131.6718377113,
+    "p95_spread_bps": 141.1691483395,
+    "max_spread_bps": 145.5797648183,
+    "min_spread_bps": 1.8310343963,
+    "threshold_bps": 205.4673029141,
     "n_flagged_wide": 0,
     "pct_flagged_wide": 0.0,
-    "median_depth_imbalance": 0.7207181179247142,
-    "p95_depth_imbalance": 0.876468750579027,
+    "median_depth_imbalance": 0.7207181179,
+    "p95_depth_imbalance": 0.8764687506,
     "n_trades_outside_spread": 127,
-    "pct_trades_outside_spread": 15.02958579881657
+    "pct_trades_outside_spread": 15.0295857988
   },
   "d5": {
     "bursts": {
@@ -83,7 +83,7 @@
     },
     "top_anchor_price": 0.03987,
     "top_anchor_count": 21,
-    "top_anchor_share_pct": 2.485207100591716
+    "top_anchor_share_pct": 2.4852071006
   },
   "d5_bursts": [
     {
@@ -125,7 +125,7 @@
       "n_buy": 7,
       "n_sell": 0,
       "n_unique_sizes": 2,
-      "total_size": 0.0019478600000000003,
+      "total_size": 0.00194786,
       "min_price": 0.03949654,
       "max_price": 0.03949654,
       "dominant_side": "buy"
@@ -180,7 +180,7 @@
       "n_buy": 0,
       "n_sell": 5,
       "n_unique_sizes": 5,
-      "total_size": 0.0024975400000000004,
+      "total_size": 0.00249754,
       "min_price": 0.0399187,
       "max_price": 0.0399187,
       "dominant_side": "sell"
@@ -190,77 +190,77 @@
     {
       "price": 0.03987,
       "count": 21,
-      "share_pct": 2.485207100591716
+      "share_pct": 2.4852071006
     },
     {
       "price": 0.03986,
       "count": 13,
-      "share_pct": 1.5384615384615385
+      "share_pct": 1.5384615385
     },
     {
       "price": 0.04020001,
       "count": 10,
-      "share_pct": 1.183431952662722
+      "share_pct": 1.1834319527
     },
     {
       "price": 0.0399187,
       "count": 10,
-      "share_pct": 1.183431952662722
+      "share_pct": 1.1834319527
     },
     {
       "price": 0.03978,
       "count": 10,
-      "share_pct": 1.183431952662722
+      "share_pct": 1.1834319527
     },
     {
       "price": 0.03949654,
       "count": 10,
-      "share_pct": 1.183431952662722
+      "share_pct": 1.1834319527
     },
     {
       "price": 0.03894,
       "count": 9,
-      "share_pct": 1.0650887573964496
+      "share_pct": 1.0650887574
     },
     {
       "price": 0.03925777,
       "count": 9,
-      "share_pct": 1.0650887573964496
+      "share_pct": 1.0650887574
     },
     {
       "price": 0.03988,
       "count": 8,
-      "share_pct": 0.9467455621301776
+      "share_pct": 0.9467455621
     },
     {
       "price": 0.04000477,
       "count": 7,
-      "share_pct": 0.8284023668639053
+      "share_pct": 0.8284023669
     },
     {
       "price": 0.03979473,
       "count": 7,
-      "share_pct": 0.8284023668639053
+      "share_pct": 0.8284023669
     },
     {
       "price": 0.04100193,
       "count": 7,
-      "share_pct": 0.8284023668639053
+      "share_pct": 0.8284023669
     },
     {
       "price": 0.03892,
       "count": 7,
-      "share_pct": 0.8284023668639053
+      "share_pct": 0.8284023669
     },
     {
       "price": 0.03984,
       "count": 7,
-      "share_pct": 0.8284023668639053
+      "share_pct": 0.8284023669
     },
     {
       "price": 0.03981,
       "count": 7,
-      "share_pct": 0.8284023668639053
+      "share_pct": 0.8284023669
     }
   ],
   "d6": {

@@ -35,6 +35,9 @@ jobs:
       - name: Run analyze.py end-to-end
         run: python analyze.py
 
+      - name: Committed findings.json reproduces on this runner (cross-platform check)
+        run: git diff --exit-code findings.json
+
       - name: Run audit.py
         run: python audit.py > audit.txt
 
