@@ -1,14 +1,14 @@
 # ETH/BTC Suspicious Pattern Analysis
 
-> 👋 **Hi — I'm Max Gorbuk**, applying for the **Inca Digital Investigations Analyst** role (Europe). This repo is a worked example of what the role does day-to-day: investigating market anomalies — wash trading, price manipulation, automated operators — and turning raw market data into a defensible, reproducible intelligence report. It began as my submission to **DN Institute [Market Data Challenge — Issue #492](https://github.com/1712n/dn-institute/issues/492)** (upstream: **[PR 1712n/market-data-challenge#24](https://github.com/1712n/market-data-challenge/pull/24)**); this standalone repo is the canonical, browseable mirror.
+> 👋 **Hi, I'm Max Gorbuk**, applying for the **Inca Digital Investigations Analyst** role (Europe). This repo is a worked example of what the role does day-to-day: investigating market anomalies, wash trading, price manipulation, automated operators, and turning raw market data into a defensible, reproducible intelligence report. It began as my submission to **DN Institute [Market Data Challenge, Issue #492](https://github.com/1712n/dn-institute/issues/492)** (upstream: **[PR 1712n/market-data-challenge#24](https://github.com/1712n/market-data-challenge/pull/24)**); this standalone repo is the canonical, browseable mirror.
 >
 > **Where to look first (≈ 5 min):**
-> 1. 🚀 **[Live dashboard](https://mkzung.github.io/ethbtc-suspicious-patterns/dashboard.html)** — click to open in your browser (GitHub Pages, no clone needed).
-> 2. The TL;DR table below — five primary signals + three peer-corroborated cross-checks.
-> 3. **[REPORT.md](./REPORT.md)** — full methodology, evidence, limitations (~8 min read).
-> 4. **`make all`** from a fresh clone — pytest 46/46 + analyze + audit + dashboard.
+> 1. 🚀 **[Live dashboard](https://mkzung.github.io/ethbtc-suspicious-patterns/dashboard.html)**, click to open in your browser (GitHub Pages, no clone needed).
+> 2. The TL;DR table below, five primary signals + three peer-corroborated cross-checks.
+> 3. **[REPORT.md](./REPORT.md)**, full methodology, evidence, limitations (~8 min read).
+> 4. **`make all`** from a fresh clone, pytest 46/46 + analyze + audit + dashboard.
 >
-> **Reach me:** [gorbuk@stanford.edu](mailto:gorbuk@stanford.edu) · +1 (208) 553-3054 · [linkedin.com/in/gorbuk](https://linkedin.com/in/gorbuk) · [github.com/mkzung](https://github.com/mkzung)
+> **Reach me:** [gorbuk.maxim@gmail.com](mailto:gorbuk.maxim@gmail.com) · +1 (208) 553-3054 · [linkedin.com/in/gorbuk](https://linkedin.com/in/gorbuk) · [github.com/mkzung](https://github.com/mkzung)
 >
 > Six-detector forensic framework over the ETH/BTC dataset (845 trades, 188 orderbook snapshots, 2025-09-01 → 2025-09-03 UTC).
 
@@ -20,24 +20,24 @@
 
 ---
 
-## TL;DR — five mutually-consistent signals of automated, likely non-organic activity
+## TL;DR, five mutually-consistent signals of automated, likely non-organic activity
 
 | # | Signal | Headline number |
 |---|---|---|
-| 1 | One-sided buy flow with zero price impact | **99.9994%** of size on buy side; buys move price 0 bps median, sells −17.8 bps |
+| 1 | One-sided buy flow with zero price impact | **99.9994%** of size on buy side; buys move price 0 bps median, sells -17.8 bps |
 | 2 | Identical-clip burst on both sides of book | size **0.00026058 ETH** × 13 in two ≤2-second bursts 22h apart (P-value ≈ 0) |
 | 3 | Sub-second multi-trade clusters | **9 burst-seconds**; max 12 sells in one second on 09-01 16:16:46 |
 | 4 | Operator-schedule asymmetry | sells in only **15 of 24 UTC hours** (US-session-bound); buys 24/7 |
 | 5 | Liquidity pathology | median spread 89.7 bps; **127 of 845 trades (15%) outside contemporaneous bid-ask** |
 | 6a | Frozen-orderbook asymmetry | bid frozen **63.6%** vs ask **7.0%** of consecutive snapshots (**9.15× asymmetry**); longest run 18 snapshots ≈ 6h |
 | 6b | Benford rejection on trade sizes | K-S **0.0626** > critical 0.0468 (n=845, α=0.05) → reject Benford-conformity |
-| 6c | Cron-style buy interval (Sep-3 14:00+) | n=95 buys, median **318 s**, IQR 295.25–341 s (CV = 0.69) |
+| 6c | Cron-style buy interval (Sep-3 14:00+) | n=95 buys, median **318 s**, IQR 295.25-341 s (CV = 0.69) |
 
-Signals 1–5 are the primary forensic case. Signals 6a–6c are independent
+Signals 1-5 are the primary forensic case. Signals 6a-6c are independent
 cross-checks added after peer review of prior submissions; all three reproduce
 on this dataset and corroborate the wash-trading interpretation.
 
-**Forensic interpretation:** two automated operators on the venue — a 24/7 buyer running wash flow against pre-arranged liquidity, and a US-trading-hours seller running real algorithmic execution. Full methodology, evidence, and limitations: **[REPORT.md](./REPORT.md)** (≈8 min read) or **[dashboard.html](./dashboard.html)** (visual, open in browser).
+**Forensic interpretation:** two automated operators on the venue, a 24/7 buyer running wash flow against pre-arranged liquidity, and a US-trading-hours seller running real algorithmic execution. Full methodology, evidence, and limitations: **[REPORT.md](./REPORT.md)** (≈8 min read) or **[dashboard.html](./dashboard.html)** (visual, open in browser).
 
 ---
 
@@ -88,11 +88,11 @@ mkzung-ethbtc-analysis/
 ## What this submission does beyond the brief
 
 - **D2 null replaced.** A naïve "shuffle the size array, take max value-count" null is degenerate (shuffling preserves frequencies). Replaced with a parametric KDE-on-log(size) null (1000 replicates), cross-validated against a uniform-on-log-range null. Both give P ≈ 0.
-- **D1 epsilon fix.** `log((buy + 1e-9)/(sell + 1e-9))` inflates to ~25 in the 119/143 buckets that contain zero sells — pure smoothing artifact. Switched to `+1`.
+- **D1 epsilon fix.** `log((buy + 1e-9)/(sell + 1e-9))` inflates to ~25 in the 119/143 buckets that contain zero sells, pure smoothing artifact. Switched to `+1`.
 - **D3 made bidirectional.** Original used `max(price)` only; missed dump-recovery patterns. Now picks whichever extremum is further from the spike start.
 - **D4 tolerance audit.** OB inter-snapshot intervals average 22 minutes; the brief's 5-min `merge_asof` tolerance matched only 22.5% of trades and underreported outside-spread by **4×**. Switched to 30-min tolerance (matches 87.8%).
-- **Side semantics verified.** BUY median trade price is +21 bps above contemporaneous mid; SELL is −29 bps below; SELL trades push mid down −18 bps post-trade. Aggressor semantics confirmed.
-- **Doubling-ladder Monte Carlo.** 4 explicit 2× pairs in the 18 flagged BUY sizes vs MC null (2000 reps) where mean is 0.09 and max is 2 — P(null ≥ 4) = 0.0000.
+- **Side semantics verified.** BUY median trade price is +21 bps above contemporaneous mid; SELL is -29 bps below; SELL trades push mid down -18 bps post-trade. Aggressor semantics confirmed.
+- **Doubling-ladder Monte Carlo.** 4 explicit 2× pairs in the 18 flagged BUY sizes vs MC null (2000 reps) where mean is 0.09 and max is 2, P(null ≥ 4) = 0.0000.
 
 Patterns tested and **rejected** as non-findings (the framework doesn't cherry-pick): round-number price clustering, quote stuffing (orderbook churn ≈ 3.6 changes per snapshot, far below stuffing thresholds), hidden-liquidity depth gaps.
 
@@ -109,6 +109,6 @@ Patterns tested and **rejected** as non-findings (the framework doesn't cherry-p
 
 ## Author
 
-**Max Gorbuk** · [gorbuk@stanford.edu](mailto:gorbuk@stanford.edu) · [github.com/mkzung](https://github.com/mkzung)
+**Max Gorbuk** · [gorbuk.maxim@gmail.com](mailto:gorbuk.maxim@gmail.com) · [github.com/mkzung](https://github.com/mkzung)
 
 Researcher at the Stanford GSB Venture Capital Initiative under Prof. Ilya Strebulaev. Incoming MAM, London Business School (Aug 2026).

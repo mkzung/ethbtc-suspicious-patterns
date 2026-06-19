@@ -1,4 +1,4 @@
-"""D5 — Burst-execution detector + time-of-day + anchor-price.
+"""D5, Burst-execution detector + time-of-day + anchor-price.
 
 Three closely-related microstructure signatures that all pointed at the same
 operator behavior:
@@ -89,7 +89,7 @@ def detect_anchor_prices(trades: pd.DataFrame, top_n: int = 10) -> pd.DataFrame:
         return pd.DataFrame(columns=["price", "count", "share_pct"])
     # Explicit (count DESC, price ASC) total order BEFORE the head() cut:
     # with bare value_counts().head(n), both the ordering AND the membership
-    # of tied counts at the boundary depend on the pandas version —
+    # of tied counts at the boundary depend on the pandas version -
     # non-deterministic across environments.
     counts = trades["price"].value_counts().reset_index()
     counts.columns = ["price", "count"]
